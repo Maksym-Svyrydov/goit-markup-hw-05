@@ -22,6 +22,8 @@
   --icon-customer-cl: #afb1b8;
   --border-color: #ececec;
   --border-card: #eeeeee;
+  /*animatioins*/
+  --anim-tr: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 body {
   background-color: var(--background-txt-xl);
@@ -66,11 +68,19 @@ img {
 }
 
 .header-page {
+  /*position: relative;*/
   border-bottom: 1px solid var(--background-hero-cl);
-  padding-top: 25px;
-  padding-bottom: 25px;
+  /*padding-top: 25px;
+  padding-bottom: 25px;*/
   /*outline: 1px solid tomato;*/
 }
+.header-item {
+  display: block;
+}
+.header-nav .nav-link.current {
+  color: var(--button-hover);
+}
+
 .container {
   width: 1200px;
   padding-left: 15px;
@@ -120,29 +130,47 @@ img {
   display: flex;
   align-items: center;
   list-style-type: none;
+  height: 100%;
   border: none;
 }
 .header-nav li:not(:last-child) {
   margin-right: 50px;
 }
 
-.nav-link-current {
+/*.nav-link-current {
   color: var(--main-btn-cl);
   text-decoration: none;
   font-weight: 500;
   line-height: 1.14;
   letter-spacing: 0.02em;
   border: none;
-}
+}*/
 .nav-link {
+  position: relative;
+  display: block;
+  padding-top: 32px;
+  padding-bottom: 32px;
   color: var(--main-txt-cl);
   text-decoration: none;
   font-weight: 500;
   letter-spacing: 0.02em;
 }
+.current::after {
+  position: absolute;
+  content: '';
+  left: 0%;
+  bottom: -1px;
+  display: block;
+  width: 100%;
+  height: 4px;
+  background-color: var(--button-hover);
+  border-radius: 2px;
+}
+
 .nav-link:hover {
   color: #2196f3;
   border: none;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-link:focus {
@@ -161,6 +189,8 @@ img {
   text-decoration: none;
   font-weight: 500;
   letter-spacing: 0.02em;
+  padding-top: 32px;
+  padding-bottom: 32px;
 }
 .contacts-link:hover {
   color: var(--main-btn-cl);
@@ -177,6 +207,7 @@ img {
 }
 .contacts-link:hover {
   color: var(--main-btn-cl);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .contacts-link:focus {
   color: var(--main-btn-cl);
@@ -192,6 +223,7 @@ img {
 .contacts-link:hover .icon-contacts,
 .contacts-link:focus .icon-contacts {
   fill: var(--main-btn-cl);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .section-hero {
   background-image: linear-gradient(rgba(47, 48, 58, 0.4), rgba(47, 48, 58, 0.4)),
@@ -240,7 +272,77 @@ img {
 .hero-btn:focus,
 .hero-btn:hover {
   background-color: var(--button-hover);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+/* modal form */
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.2);
+
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 528px;
+  height: 581px;
+
+  background-color: #ffffff;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1), opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0.9);
+  opacity: 0;
+}
+
+.backdrop .modal {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+.modal-btn {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  color: #000000;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.btn-close {
+  fill: currentColor;
+}
+
 .section-features {
   font-family: var(--main-font);
 }
