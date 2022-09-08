@@ -689,20 +689,18 @@ img {
   display: flex;
   flex-wrap: wrap;
   list-style-type: none;
+  justify-content: center;
 }
 .list-parfolio-item {
   background-color: var(--background-txt-xl);
-}
-.list-parfolio-item {
+  width: calc((100% - 60px) / 3);
   margin-right: 30px;
+  margin-bottom: 30px;
+  cursor: pointer;
 }
 
 .list-parfolio-item:nth-child(3n) {
   margin-right: 0;
-}
-
-.list-parfolio-item {
-  margin-bottom: 30px;
 }
 
 .list-parfolio-item:nth-child(n + 7) {
@@ -710,11 +708,10 @@ img {
 }
 .link-card {
   display: block;
+  text-decoration: none;
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-.link-card:hover {
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
-    1px 4px 6px rgba(0, 0, 0, 0.16);
-}
+.link-card:hover,
 .link-card:focus {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
@@ -725,14 +722,14 @@ img {
   border-left: 1px solid var(--background-portfolio-cl);
   border-right: 1px solid var(--background-portfolio-cl);
 }
-.list-parfolio-item:hover {
+/*.list-parfolio-item:hover {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
 }
 .subtitle-card:focus {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
-}
+}*/
 .subtitle-item {
   margin-bottom: 4px;
   color: var(--main-txt-cl);
@@ -747,4 +744,32 @@ img {
   font-size: 16px;
   line-height: calc(30 / 18);
   letter-spacing: 0.06em;
+}
+.porfolio-tumb {
+  position: relative;
+  overflow: hidden;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 63px 24px;
+  background-color: rgba(33, 150, 243, 0.9);
+  transform: translateY(100%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.link-card:hover .overlay,
+.link-card:focus .overlay {
+  transform: translateY(0%);
+}
+.overlay-desc {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28px;
+  color: var(--background-txt-xl);
+  letter-spacing: 0.03em;
 }
